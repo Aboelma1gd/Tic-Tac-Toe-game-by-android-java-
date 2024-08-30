@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tictactoe</string>
+    <string name="enter_players_names">ENTREZ LES NOMS DES JOUEURS</string>
+    <string name="enter_player_one_name">Entrez le nom du joueur</string>
+    <string name="enter_player_two_name">Entrez le nom du joueur deux</string>
+    <string name="Start_Game">Démarrer le jeu</string>
+    <string name="Player_One">Premier joueur</string>
+    <string name="Player_Two">Deuxième joueur</string>
+    <string name="results">Résultats</string>
+    <string name="Start_again">Recommencer</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="Sign_up">Vous n’avez pas de compte ? S’enregistrer</string>
+    <string name="log_in">S\'identifier</string>
+    <string name="example">example@gmail.com</string>
+    <string name="pass">Mot de passe</string>
+    <string name="email">Adresse courriel</string>
+    <string name="Already">Vous avez déjà un compte ? S\'identifier</string>
+    <string name="confirm">Confirmer le mot de passe</string>
+    <string name="create">Créer un compte</string>
+    <string name="AI">avec l’IA</string>
+    <string name="friend">avec une amie</string>
+    <string name="next">prochaine</string>
+    <string name="player_name">Nom du joueur</string>
+    <string name="Background_Music">Musique de fond</string>
+    <string name="Sound_Effects">Effets sonores</string>
+</resources>

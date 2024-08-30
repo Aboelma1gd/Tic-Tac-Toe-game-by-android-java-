@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"لعبة x o "</string>
+    <string name="enter_players_names">أدخل أسماء \n اللاعبين</string>
+    <string name="enter_player_one_name">أدخل اسم لاعب واحد</string>
+    <string name="enter_player_two_name">أدخل اسم اللاعب الثاني</string>
+    <string name="Start_Game">ابدأ اللعبة</string>
+    <string name="Player_One">اللاعب الأول</string>
+    <string name="Player_Two">اللاعب الثاني</string>
+    <string name="results">النتائج</string>
+    <string name="Start_again">ابدأ من جديد</string>
+    <string name="settings_title">اعدادات</string>
+    <string name="Sign_up">ليس لديك حساب؟ التسجيل</string>
+    <string name="log_in">تسجيل الدخول</string>
+    <string name="example">example@gmail.com</string>
+    <string name="pass">كلمة المرور</string>
+    <string name="email">عنوان البريد الإلكتروني</string>
+    <string name="Already">هل لديك حساب بالفعل؟ تسجيل الدخول</string>
+    <string name="confirm">تأكيد كلمة المرور</string>
+    <string name="create">إنشاء حساب</string>
+    <string name="AI">مع الذكاء الاصطناعي</string>
+    <string name="friend">مع صديق</string>
+    <string name="next">التالي</string>
+    <string name="player_name">اسم اللاعب</string>
+    <string name="Background_Music">موسيقى خلفية</string>
+    <string name="Sound_Effects">المؤثرات الصوتية</string>
+
+</resources>

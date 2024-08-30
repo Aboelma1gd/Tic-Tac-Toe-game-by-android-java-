@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"X O戏 "</string>
+    <string name="enter_players_names">输玩家姓名</string>
+    <string name="enter_player_one_name">输玩家一号名</string>
+    <string name="enter_player_two_name">输玩家二名</string>
+    <string name="Start_Game">戏</string>
+    <string name="Player_One">玩家 1</string>
+    <string name="Player_Two">玩家二</string>
+    <string name="results">卒</string>
+    <string name="Start_again">更始</string>
+    <string name="settings_title">置</string>
+    <string name="Sign_up">无帐户? 登记</string>
+    <string name="log_in">登录</string>
+    <string name="example">example@gmail.com</string>
+    <string name="pass">密码</string>
+    <string name="email">电子邮件地址</string>
+    <string name="Already">既有帐户? 登录</string>
+    <string name="confirm">信密码</string>
+    <string name="create">创建账户</string>
+    <string name="AI">用 AI</string>
+    <string name="friend">与朋友游</string>
+    <string name="next">次者</string>
+    <string name="player_name">玩家名</string>
+    <string name="Background_Music">背景音乐</string>
+    <string name="Sound_Effects">音效</string>
+</resources>

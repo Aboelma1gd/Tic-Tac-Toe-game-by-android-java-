@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">x o Spiel</string>
+    <string name="enter_players_names">GEBEN SIE DIE NAMEN DER SPIELER EIN</string>
+    <string name="enter_player_one_name">Geben Sie den Namen des Spielers ein</string>
+    <string name="enter_player_two_name">Geben Sie den Namen des zweiten Spielers ein</string>
+    <string name="Start_Game">Spiel starten</string>
+    <string name="Player_One">Spieler Eins</string>
+    <string name="Player_Two">Spieler Zwei</string>
+    <string name="results">Befund</string>
+    <string name="Start_again">Von vorne anfangen</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="Sign_up">Sie haben noch kein Konto? Anmelden</string>
+    <string name="log_in">Anmelden</string>
+    <string name="example">example@gmail.com</string>
+    <string name="pass">Passwort</string>
+    <string name="email">E-Mail-Adresse</string>
+    <string name="Already">Haben Sie bereits ein Konto? Anmelden</string>
+    <string name="confirm">Passwort bestätigen</string>
+    <string name="create">Konto erstellen</string>
+    <string name="AI">mit KI</string>
+    <string name="friend">mit Freund</string>
+    <string name="next">nächster</string>
+    <string name="player_name">Name des Spielers</string>
+    <string name="Background_Music">Hintergrundmusik</string>
+    <string name="Sound_Effects">Geräuscheffekte</string>
+</resources>

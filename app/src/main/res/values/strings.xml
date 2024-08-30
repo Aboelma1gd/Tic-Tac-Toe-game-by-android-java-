@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="enter_players_names">ENTER   PLAYERS NAMES</string>
+    <string name="enter_player_one_name">Enter player one name</string>
+    <string name="enter_player_two_name">Enter player two name</string>
+    <string name="Start_Game">Start Game</string>
+    <string name="Player_One">Player One</string>
+    <string name="Player_Two">Player Two</string>
+    <string name="results">Results</string>
+    <string name="Start_again">Start Again</string>
+    <string name="settings_title">Settings</string>
+    <string name="button_desc" translatable="false">Description of the button</string>
+    <string name="Sign_up">Don’t have an account? Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="example">example@gmail.com</string>
+    <string name="pass">Password</string>
+    <string name="email">Email address</string>
+    <string name="Already">Already have an account? Log in</string>
+    <string name="confirm">Confirm password</string>
+    <string name="create">Create account</string>
+    <string name="AI">with AI</string>
+    <string name="friend">with friend</string>
+    <string name="next">next</string>
+    <string name="player_name">player name</string>
+    <string name="Background_Music">Background Music</string>
+    <string name="Sound_Effects">Sound Effects</string>
+
+
+</resources>
