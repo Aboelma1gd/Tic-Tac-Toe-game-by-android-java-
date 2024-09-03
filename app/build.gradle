@@ -20,6 +20,7 @@ android {
         viewBinding true
     }
 
+
     buildTypes {
         release {
             minifyEnabled false
@@ -31,7 +32,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
+android {
+    viewBinding {
+        enabled = true
+    }
+}
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.7.0'

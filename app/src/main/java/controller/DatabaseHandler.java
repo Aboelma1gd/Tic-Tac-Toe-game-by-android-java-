@@ -21,8 +21,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context,DB_NAME,null,DB_VERSION);
     }
 
-
-
     @Override
     public void onCreate(@NonNull SQLiteDatabase db) {
         String createTable="CREATE TABLE "+TABLE_NAME+" (id integer primary key autoincrement,email_address text unique not null,password text not null)";
@@ -44,19 +42,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             values.put("email_address", user.getUser_name());
             values.put("password", user.getPassword());
 
-            // Attempt to insert the user data into the database
             long result = db.insert("users", null, values);
 
-            // Check if the insert was successful
             if (result == -1) {
                 throw new Exception("Error inserting user data");
             }
-            return true; // Return true if insertion was successful
+            return true;
         } catch (SQLiteConstraintException e) {
-            // Handle the unique constraint violation
             System.out.println("This email already has an account ");
         } catch (Exception e) {
-            // Handle other possible exceptions
             e.printStackTrace();
         } finally {
             // Ensure that the database is closed even if an error occurs
