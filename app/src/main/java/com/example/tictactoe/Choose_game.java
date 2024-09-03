@@ -14,88 +14,87 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class Choose_game extends AppCompatActivity {
-    Button Ai,friend;
-
-
+    Button Ai, friend;
     ImageButton myImageButton;
 
-    public MediaPlayer backgroundMusic;
-   public static MediaPlayer soundEffect;
+    private MediaPlayer backgroundMusic;
+    public static MediaPlayer soundEffect;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing);
-        Ai=findViewById(R.id.withai_btn);
-        friend=findViewById(R.id.withfriend_btn);
+
+        myImageButton = findViewById(R.id.set_btn);
+        Ai = findViewById(R.id.withai_btn);
+        friend = findViewById(R.id.withfriend_btn);
+
         Ai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Choose_game.this,AiGetName.class);
+                Intent intent = new Intent(Choose_game.this, AiGetName.class);
                 startActivity(intent);
             }
         });
         friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Choose_game.this,AddPlayers.class);
+                Intent intent = new Intent(Choose_game.this, AddPlayers.class);
                 startActivity(intent);
             }
         });
 
-        myImageButton = findViewById(R.id.set_btn);
-        myImageButton.setOnClickListener(v -> {
-            Intent i = new Intent(Choose_game.this, Settings.class);
-            startActivity(i);
-            Log.d("MainActivity", "ImageButton clicked.");
+        myImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Choose_game.this, Settings.class);
+                startActivity(i);
+                Log.d("Choose_game", "Settings button clicked.");
+            }
         });
 
         // Initialize and play background music
+        handleMusicPlayback();
+        handleSoundEffectInitialization();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        handleMusicPlayback();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releaseMediaPlayers();
+    }
+
+    private void handleMusicPlayback() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isMusicOn = sharedPreferences.getBoolean("music_on", true);
-        //boolean isSoundOn = sharedPreferences.getBoolean("sound_on", true);
 
         if (backgroundMusic == null) {
             backgroundMusic = MediaPlayer.create(this, R.raw.background);
             backgroundMusic.setLooping(true);
         }
 
+        // Only start music if it is not already playing
         if (isMusicOn && !backgroundMusic.isPlaying()) {
             backgroundMusic.start();
         } else if (!isMusicOn && backgroundMusic.isPlaying()) {
             backgroundMusic.pause();
         }
+    }
 
+    private void handleSoundEffectInitialization() {
         if (soundEffect == null) {
             soundEffect = MediaPlayer.create(this, R.raw.click);
         }
-
-
-
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean isMusicOn = sharedPreferences.getBoolean("music_on", true);
-        boolean isSoundOn = sharedPreferences.getBoolean("sound_on", true);
 
-        if (isMusicOn && backgroundMusic != null && !backgroundMusic.isPlaying()) {
-            backgroundMusic.start();
-        } else if (!isMusicOn && backgroundMusic != null && backgroundMusic.isPlaying()) {
-            backgroundMusic.pause();
-        }
-
-        if (isSoundOn && soundEffect != null && !soundEffect.isPlaying()) {
-            soundEffect.start();
-        } else if (!isSoundOn && soundEffect != null && soundEffect.isPlaying()) {
-            soundEffect.pause();
-        }
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    private void releaseMediaPlayers() {
         if (backgroundMusic != null) {
             backgroundMusic.release();
             backgroundMusic = null;
@@ -107,3 +106,4 @@ public class Choose_game extends AppCompatActivity {
         }
     }
 }
+

@@ -23,13 +23,15 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        db=new DatabaseHandler(this);
 
         regEmail=findViewById(R.id.reg_email_et);
         regPassword=findViewById(R.id.reg_password_et);
         conPassword=findViewById(R.id.reg_confirm_password_et);
         create=findViewById(R.id.reg_btn);
         gotoLogin=findViewById(R.id.goto_login_btn);
-        db=new DatabaseHandler(this);
+
+
 
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +53,7 @@ public class Registration extends AppCompatActivity {
                     Toast.makeText(Registration.this, "Please enter same password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-               /* db.insertUser(new User(Email,Password));
 
-                Intent intent=new Intent(Registration.this,Login.class);
-                startActivity(intent);
-                */
                 if (db.insertUser(new User(Email, Password))) {
                     Intent intent = new Intent(Registration.this, Login.class);
                     startActivity(intent);

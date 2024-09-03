@@ -1,41 +1,62 @@
 package com.example.tictactoe;
+
 import static com.example.tictactoe.Choose_game.soundEffect;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
-import com.example.tictactoe.databinding.ActivityMainBinding;
+
+import com.example.tictactoe.databinding.ActivityWithAiBinding;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class WithAI extends AppCompatActivity {
-    ActivityMainBinding binding;
+    @NonNull ActivityWithAiBinding binding;
     private final List<int[]> winningPositions = new ArrayList<>();
     private int[] boxPositions = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // 9 zeros for the board
     private int playerTurn = 1; // 1 for Player, 2 for AI
     private int totalSelectedBoxes = 0; // Count of selected boxes
     private String playerSymbol; // Track the player's symbol
-
+    private String aiSymbol; // Track the AI's symbol
+    private final Handler handler = new Handler(); // Handler for delay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        binding = ActivityWithAiBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Retrieve player name and choice from AiGetName activity
-        String playerOneName = getIntent().getStringExtra("p1");
+        String playerName = getIntent().getStringExtra("p1");
         playerSymbol = getIntent().getStringExtra("playerChoice");
-        binding.playerOneName.setText(playerOneName);
+        aiSymbol = playerSymbol.equals("X") ? "O" : "X"; // AI plays the opposite symbol
+        binding.PlayerName.setText(playerName);
         binding.playerTwoName.setText("Computer");
+
+        // Update the player's symbol in the ImageView
+        updatePlayerSymbolImageView();
 
         // Set up winning combinations
         setupWinningPositions();
 
         setupClickListeners();
+    }
+
+    private void updatePlayerSymbolImageView() {
+        if (playerSymbol.equals("X")) {
+            binding.playerSymbol.setImageResource(R.drawable.ximage);
+            binding.computerSymbol.setImageResource(R.drawable.oimage);
+
+        } else {
+            binding.playerSymbol.setImageResource(R.drawable.oimage);
+            binding.computerSymbol.setImageResource(R.drawable.ximage);
+        }
     }
 
     private void setupWinningPositions() {
@@ -63,31 +84,37 @@ public class WithAI extends AppCompatActivity {
 
     private void handleBoxClick(int position, ImageView imageView) {
         if (isBoxSelectable(position)) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean isSoundOn = sharedPreferences.getBoolean("sound_on", true);
-            if (isSoundOn && soundEffect != null) {
-                if (soundEffect.isPlaying()) {
-                    soundEffect.seekTo(0); // Reset to the start if it's already playing
-                }
-                soundEffect.start();
-            }
+            playSoundEffect();
             boxPositions[position] = playerTurn;
             imageView.setImageResource(playerSymbol.equals("X") ? R.drawable.ximage : R.drawable.oimage);
 
             totalSelectedBoxes++;
             if (checkResults()) {
-                showResultDialog(binding.playerOneName.getText() + " wins!");
+                showResultDialog(binding.PlayerName.getText() + " wins!");
             } else if (totalSelectedBoxes == 9) {
                 showResultDialog("Match Draw");
             } else {
                 playerTurn = 2; // Switch to AI turn
-                aiMove(); // Let AI make its move
+                handler.postDelayed(this::aiMove, 400);
             }
         }
     }
+
+    private void playSoundEffect() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isSoundOn = sharedPreferences.getBoolean("sound_on", true);
+        if (isSoundOn && soundEffect != null) {
+            if (soundEffect.isPlaying()) {
+                soundEffect.seekTo(0); // Reset to the start if it's already playing
+            }
+            soundEffect.start();
+        }
+    }
+
     private boolean checkResults() {
         for (int[] combination : winningPositions) {
-            if (boxPositions[combination[0]] == playerTurn && boxPositions[combination[1]] == playerTurn &&
+            if (boxPositions[combination[0]] == playerTurn &&
+                    boxPositions[combination[1]] == playerTurn &&
                     boxPositions[combination[2]] == playerTurn) {
                 return true;
             }
@@ -101,7 +128,7 @@ public class WithAI extends AppCompatActivity {
             boxPositions[bestMove] = playerTurn;
             ImageView imageView = getImageViewByPosition(bestMove);
             if (imageView != null) {
-                imageView.setImageResource(playerSymbol.equals("X") ? R.drawable.oimage : R.drawable.ximage);
+                imageView.setImageResource(aiSymbol.equals("X") ? R.drawable.ximage : R.drawable.oimage);
             }
 
             totalSelectedBoxes++;
@@ -219,11 +246,10 @@ public class WithAI extends AppCompatActivity {
         resultDialog.show();
     }
 
-
     public void restartMatch() {
         boxPositions = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0}; // Reset to 9 zeros
         playerTurn = 1;
-        totalSelectedBoxes = 1;
+        totalSelectedBoxes = 0;
         binding.image1.setImageResource(R.drawable.white_box);
         binding.image2.setImageResource(R.drawable.white_box);
         binding.image3.setImageResource(R.drawable.white_box);

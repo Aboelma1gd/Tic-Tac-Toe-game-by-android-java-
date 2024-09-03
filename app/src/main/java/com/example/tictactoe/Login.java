@@ -16,7 +16,8 @@ public class Login extends AppCompatActivity {
     EditText email,password;
     Button login,gotoReg;
     private DatabaseHandler db;
-    int ch=0;
+
+    private String Email,Password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,8 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Email=email.getText().toString();
-                String Password=password.getText().toString();
+                 Email=email.getText().toString();
+                 Password=password.getText().toString();
 
                 if (Email.isEmpty()) {
                     Toast.makeText(Login.this, "Please enter your email", Toast.LENGTH_SHORT).show();

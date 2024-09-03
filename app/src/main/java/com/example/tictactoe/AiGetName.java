@@ -31,7 +31,6 @@ public class AiGetName extends AppCompatActivity {
         backBtn = findViewById(R.id.ai_player_names_back_btn);
         radioGroup = findViewById(R.id.radioGroup);
 
-
         choice = "X";
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.radioX) {
@@ -40,7 +39,6 @@ public class AiGetName extends AppCompatActivity {
                 choice = "O";
             }
         });
-
 
         playerButton.setOnClickListener(v -> {
             playerName = playerNameTxt.getText().toString();
@@ -54,9 +52,16 @@ public class AiGetName extends AppCompatActivity {
             }
         });
 
-        backBtn.setOnClickListener(v -> {
-            Intent i = new Intent(AiGetName.this, Choose_game.class);
-            startActivity(i);
-        });
+        backBtn.setOnClickListener(v -> onBackPressed()); // Use onBackPressed to handle back navigation
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Navigate back to Choose_game without causing background music to restart
+        super.onBackPressed();
+        Intent intent = new Intent(AiGetName.this, Choose_game.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish(); // Close the current activity
     }
 }
